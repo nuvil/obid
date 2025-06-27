@@ -1,0 +1,25 @@
+## Сокращения
+pod сокращает до po
+## Команды
+kubectl completion -h - настройка комплишина
+
+kubectl get pod - получение подов
+kubectl create -h - справка о команде
+kubectl create -f name.yaml - создать под (применить описание пода) (выполняется 1 раз)
+kubectl apply -f name.yaml - применяет изменения (если 1 раз - то создать, если уже есть, то применит изменения)
+kubectl describe po name - описание пода
+kubectl delete pod name - удаление пода
+kubectl delete -f name.yaml - удаление по описанию
+kubectl delete pod --all - удаление всех подов
+kubecqtl delete all --all -A -УДАЛЕНИЕ ВСЕГО 
+
+
+kubectl get replicaset (rs) - получение всех реплик
+
+kubectl get po -l app=my-app
+
+Проскейлить приложения (увеличить количество копий):
+1. Изменение файла name.yaml
+2. kubectl  scale --replicas 3 replicaset **my-replicase**t
+
+
