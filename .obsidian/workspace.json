@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Срезы/Срез 2/CI CD/GitOps.md",
+                "file": "Документация/Kubernetes/Теория.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GitOps"
+              "title": "Теория"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 376.51103591918945
+    "width": 376.51103591918945,
+    "collapsed": true
   },
   "right": {
     "id": "b409ea95a383a059",
@@ -168,11 +169,18 @@
   },
   "active": "e5b9bceec5e173f5",
   "lastOpenFiles": [
+    "Документация/Docker/Docker.md",
+    "Документация/Docker/Docker Compose.md",
+    "Документация/Kubernetes/Теория.md",
+    "Документация/Kubernetes/Основные команды.md",
+    "Документация/GitOps/GitOps.md",
+    "Документация/Git/Git.md",
+    "Документация/GitOps",
+    "Документация/Kubernetes/Команды.md",
+    "Срезы/Срез 2/CI CD/GitOps.md",
     "Документация/Docker/Docker secret.md",
     "Документация/Docker/Docker registry.md",
-    "Документация/Docker/Docker Compose.md",
     "Документация/Docker/Docker comand.md",
-    "Документация/Docker/Docker.md",
     "Документация/Docker/Установка docker.md",
     "Приколы/ШПОРА.md",
     "Приколы/Что я выполнил.md",
@@ -188,12 +196,6 @@
     "Срезы/Срез 2/CI CD/Основы Jenkins.md",
     "Срезы/Срез 2/CI CD/Продвинутые возможности Jenkins.md",
     "Срезы/Срез 2/CI CD/CI CD в Kubernetes.md",
-    "Срезы/Срез 2/CI CD/GitOps.md",
-    "Срезы/Срез 2/Основы виртуализации и контейнеризации/Основные понятия.md",
-    "Срезы/Срез 3/Основы виртуализации и контейнеризации/Основы Docker.md",
-    "Срезы/Срез 3/Основы виртуализации и контейнеризации/Основны Containers orchestration.md",
-    "Срезы/Срез 3/Основы виртуализации и контейнеризации/Основы Kubernetes.md",
-    "Срезы/Срез 3/Основы виртуализации и контейнеризации/kubctl.md",
     "zabbix_vs_prometheus.markdown",
     "Pasted image 20250618130726.png",
     "Pasted image 20250611144158.png",
@@ -213,7 +215,6 @@
     "Документация/Git",
     "Документация/Web",
     "Meetup 11 июня",
-    "Приколы",
     "Срез 1/Без названия.canvas"
   ]
 }
