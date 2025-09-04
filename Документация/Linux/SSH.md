@@ -36,3 +36,6 @@ systemctl restart sshd
 ```
 ssh -L port_machine:localhost:удаленный_порт сервер_для_подключения
 ```
+## ssh-agent
+eval "$(ssh-agent -s)"
+ssh-add ~/path/to/ssh
