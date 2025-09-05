@@ -8,7 +8,6 @@ import os
 
   
   
-  
 
 # download config
 
@@ -20,14 +19,7 @@ username = config.require("username")
 
 password = config.require_secret("password")  
 
-private_key = open("C:/Users/PavelSurovtsev/.ssh/id_ed25519").read()
-
   
-
-# cfg = pulumi.Config()
-
-# private_key = cfg.require_secret("sshPrivateKey")
-
   
 
 # Provider connection to proxmox
@@ -45,6 +37,18 @@ provider = proxmoxve.Provider(
     insecure=True
 
 )
+
+  
+  
+  
+
+# cfg = pulumi.Config()
+
+# private_key = cfg.require_secret("sshPrivateKey")
+
+private_key = open("C:/Users/PavelSurovtsev/.ssh/id_ed25519").read()
+
+public_key = open("C:/Users/PavelSurovtsev/.ssh/id_ed25519.pub").read()
 
   
 
@@ -199,8 +203,6 @@ for i in range(1, vm_count + 1):
     ips.append(ip_address.split("/")[0])
 
   
-  
-  
 
 master1_conn = command.remote.ConnectionArgs(
 
@@ -211,6 +213,18 @@ master1_conn = command.remote.ConnectionArgs(
     private_key=private_key
 
 )
+
+# in next version
+
+# install_prereqs_master1 = command.remote.Command(
+
+#     "install-prereqs-master1",
+
+#     connection=master1_conn,
+
+#     create="apt-get update -y && apt-get install -y curl",
+
+# )
 
   
 
@@ -224,7 +238,11 @@ master1_install = command.remote.Command(
 
     # create="wget -qO- https://get.k3s.io | sh -s - server --cluster-init"
 
+    # opts=pulumi.ResourceOptions(depends_on=[install_prereqs_master1])
+
 )
+
+  
 
 get_token = command.remote.Command(
 
@@ -238,7 +256,10 @@ get_token = command.remote.Command(
 
 )
 
-# # Установка k3s на master-2
+  
+  
+
+ # Install k3s on master-2
 
 command.remote.Command(
 
@@ -292,9 +313,7 @@ for i in range(2, vm_count):
 
   
 
-# Экспорт kubeconfig
-
-  
+# Export kubeconfig
 
 kubeconfig = command.remote.Command(
 
@@ -312,11 +331,45 @@ kubeconfig = command.remote.Command(
 
 # # Меняем адрес с localhost на внешний IP master-1
 
-kubeconfig_fixed = kubeconfig.stdout.apply(
+# kubeconfig_fixed = kubeconfig.stdout.apply(
 
-    lambda content: content.replace("127.0.0.1", ips[0])
+#     lambda content: content.replace("127.0.0.1", ips[0])
 
-)
+# )
+
+def fix_kubeconfig(content: str) -> str:
+
+    fixed = content.replace("127.0.0.1", ips[0])
+
+    fixed = fixed.replace("default", "pulumi-k3s")
+
+    fixed = fixed.replace("default@pulumi-k3s", "pulumi-user@pulumi-k3s")
+
+    return fixed
+
+  
+
+kubeconfig_fixed = kubeconfig.stdout.apply(fix_kubeconfig)
+
+  
+
+#  --- Сохраняем kubeconfig в файл ---
+
+def write_kubeconfig(content: str):
+
+    path = "./k3s-kubeconfig.yaml"
+
+    with open(path, "w") as f:
+
+        f.write(content)
+
+    print(f"Kubeconfig saved to {path}")
+
+    return path
+
+  
+
+kubeconfig_path = kubeconfig_fixed.apply(write_kubeconfig)
 
   
   
@@ -325,4 +378,4 @@ pulumi.export("vm_names", [vm.name for vm in vms])
 
 pulumi.export("vm_ips", ips)
 
-pulumi.export("kubeconfig", kubeconfig_fixed)
+pulumi.export("kubeconfig_path", kubeconfig_path)
