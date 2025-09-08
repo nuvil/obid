@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Документация/Pulumi/TEST 2.md",
+                "file": "Документация/Pulumi/ВМ + k3s cluster.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TEST 2"
+              "title": "ВМ + k3s cluster"
             }
           }
         ]
@@ -171,11 +171,13 @@
   },
   "active": "21cf717708acb348",
   "lastOpenFiles": [
+    "Документация/Pulumi/Создание 1 ВМ.md",
+    "Документация/Pulumi/Создание множество виртуальных машин.md",
+    "Документация/Pulumi/основные команды.md",
+    "Документация/Pulumi/ВМ + k3s cluster.md",
+    "Документация/Kubernetes/Команды.md",
     "Документация/Pulumi/TEST 1.md",
     "Документация/Pulumi/TEST 2.md",
-    "Документация/Pulumi/Создание множество виртуальных машин.md",
-    "Документация/Pulumi/Создание 1 ВМ.md",
-    "Документация/Pulumi/основные команды.md",
     "Документация/cloud init/cloud-init.md",
     "Документация/Linux/SSH.md",
     "Документация/Linux/Основные команды.md",
